@@ -1,41 +1,46 @@
+#! /usr/bin/env python
+
 import sys
 import os
+import os.path
 
-def print_header():
-    print "<head></head>"
+def print_header(outfile):
+    outfile.write("<head></head>\n")
 
-    print "<body>"
-    print "<h1>Title goes here</h1>"
-    print "<p>Publication date goes here</p>"
-    print "<h2>Introduction</h2>"
-    print "<p>Intro text goes here</p>"
+    outfile.write("<body>\n")
+    outfile.write("<h1>Title goes here</h1>\n")
+    outfile.write("<p>Publication date goes here</p>\n")
+    outfile.write("<h2>Introduction</h2>\n")
+    outfile.write("<p>Intro text goes here</p>\n")
 
 
-def print_toc(images):
-    print "<h2>Table of Images</h2>"
-    print "<a id='toc'/>"
+def print_toc(outfile, images):
+    outfile.write("<h2>Table of Images</h2>\n")
+    outfile.write("<a id='toc'/>\n")
     for i in images:
         base = i.replace('.png', '')
-        print "<div><a href='#%s'>%s</a></div>" % (i,base)
+        outfile.write("<div><a href='#%s'>%s</a></div>\n" % (i,base))
 
-def print_gallery(images):
+def print_gallery(outfile, images):
     for i in images:
         base = i.replace('.png', '')
-        print "<div style='page-break-before:always'><a id='%s'/><h2>%s</h2><img src='%s'/></div>" % (i,base,i)
+        outfile.write("<div style='page-break-before:always'><a id='%s'/><h2>%s</h2><img src='%s'/></div>\n" % (i,base,i))
 
 
-def print_footer():
-    print "</body>"
+def print_footer(outfile):
+    outfile.write("</body>\n")
 
 
 def main():
     path = sys.argv[1]
+    outfilename = sys.argv[2]
     images = [f for f in (os.listdir(path)) if f.endswith(".png")]
-
-    print_header()
-    print_toc(images)
-    print_gallery(images)
-    print_footer()
+    
+    with open(os.path.join(path, outfilename), 'w') as outfile:
+      print_header(outfile)
+      print_toc(outfile, images)
+      print_gallery(outfile, images)
+      print_footer(outfile)
 
 
 
