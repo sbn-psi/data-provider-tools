@@ -15,7 +15,7 @@ The output file will be generated inside of the specified direcory.
 
 ## Converting to PDF/A
 This html file may now be converted into a PDF/A file by importing it into an
-office suite such as Microsoft Office or LibreOffice and exported as a PDF/A
+office suite such as Microsoft Office or LibreOffice and exporting it as a PDF/A
 
 [Microsoft Office Instructions](https://support.office.com/en-us/article/save-or-convert-to-pdf-or-xps-d85416c5-7d77-4fd6-a216-6f4bf7c7c110#ID0EAADAAA=2016,_2013,_2010)
 
