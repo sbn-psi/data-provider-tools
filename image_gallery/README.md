@@ -22,3 +22,6 @@ office suite such as Microsoft Office or LibreOffice and exporting it as a PDF/A
 [LibreOffice Instructions](https://help.libreoffice.org/Common/Export_as_PDF)
 
 Regardless of which office suite you use, make sure that you select the PDF/A option. This may be buried in the options menu for Microsoft Office.
+
+## Limitations
+This script does not traverse the directories recursively. All of the files have to be in the directory, and not in the subdirectory. This could be updated in a future revision.
