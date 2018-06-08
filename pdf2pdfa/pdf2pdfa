@@ -1,11 +1,11 @@
 set -e 
 
-PDF_FILE=$1
-BASE_FILE=`echo ${PDF_FILE} | sed -e 's/.pdf$//'`
-PDFA_FILE=${BASE_FILE}.pdfa.pdf
+PDF_FILE="$1"
+BASE_FILE=`echo "${PDF_FILE}" | sed -e 's/.pdf$//'`
+PDFA_FILE="${BASE_FILE}".pdfa.pdf
 
 VERAPDF_CMD=~/verapdf/verapdf
 
-gs -dPDFA=1 -dPDFACompatibilityPolicy=1 -dBATCH -dNOPAUSE -dNOOUTERSAVE -sDEVICE=pdfwrite -sColorConverionStrategy=/UseDeviceIndependentColor -sOutputFile=${PDFA_FILE} PDFA_def.ps ${PDF_FILE}
+gs -dPDFA=1 -dPDFACompatibilityPolicy=1 -dBATCH -dNOPAUSE -dNOOUTERSAVE -sDEVICE=pdfwrite -sColorConverionStrategy=/UseDeviceIndependentColor -sOutputFile=${PDFA_FILE} PDFA_def.ps "${PDF_FILE}"
 
-$VERAPDF_CMD --format text ${PDFA_FILE}
+$VERAPDF_CMD --format text "${PDFA_FILE}"
