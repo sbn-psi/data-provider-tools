@@ -8,4 +8,9 @@ VERAPDF_CMD=~/verapdf/verapdf
 
 gs -dPDFA=1 -dPDFACompatibilityPolicy=1 -dBATCH -dNOPAUSE -dNOOUTERSAVE -sDEVICE=pdfwrite -sColorConverionStrategy=/UseDeviceIndependentColor -sOutputFile=${PDFA_FILE} PDFA_def.ps "${PDF_FILE}"
 
-$VERAPDF_CMD --format text "${PDFA_FILE}"
+if [ -e "$VERAPDF_CMD" ]; then
+    echo "Running verapdf..."
+    $VERAPDF_CMD --format text "${PDFA_FILE}"
+else
+    echo "verapdf not found. Your conversion probably succeeded, but it cannot be validated."
+fi
