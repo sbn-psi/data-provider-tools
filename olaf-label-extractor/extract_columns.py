@@ -12,6 +12,7 @@ DATA_TYPES = {
     'ASCII_Integer': 'integer',
     'ASCII_Real': 'real',
     'ASCII_String': 'string',
+    'UTF8_String': 'string',
     'ASCII_Date_Time_YMD': 'datetime',
     'ASCII_Date_YMD': 'date'
 }
@@ -23,7 +24,8 @@ FORMATS = {
     'e': 'E'
 }
 
-LINES = ['name', 'data_type', 'units', 'missing_constant', 'description', 'format']
+FW_LINES = ['name', 'data_type', 'units', 'missing_constant', 'description', 'format']
+CSV_LINES = ['name', 'data_type', 'units', 'missing_constant', 'description']
 
 def main(argv=None):
     '''
@@ -42,16 +44,25 @@ def main(argv=None):
     with open(outfilename, 'w') as outfile:
         outfile.write(contents)
 
-
-
 def translate_file(infile):
     '''
     Translate a PDS4 label into a column definition file for use with OLAF.
     '''
     soup = BeautifulSoup(infile, 'lxml-xml')
 
-    fields = [translate(extract(field)) for field in soup.find_all('Field_Character')]
-    output_lines = [format_line(fields, k) for k in LINES]
+    if soup.find('Table_Character'):
+        return translate_table(soup.find('Table_Character'), 'Field_Character', FW_LINES)
+    elif soup.find('Table_Delimited'):
+        return translate_table(soup.find('Table_Delimited'), 'Field_Delimited', CSV_LINES)
+    else:
+        return 'Unrecognized table.'
+
+def translate_table(table, field_spec, linespec):
+    '''
+    Translates a single table within the label into a column definition file.
+    '''
+    fields = [translate(extract(field)) for field in table.find_all(field_spec)]
+    output_lines = [format_line(fields, k) for k in linespec]
     contents = '\r\n'.join(output_lines) + '\r\n'
     return contents
 
@@ -79,7 +90,7 @@ def translate(field):
         'data_type': DATA_TYPES[field['data_type']],
         'units': field['units'],
         'missing_constant': field['missing_constant'],
-        'format': translate_format(field['format'])
+        'format': translate_format(field['format']) if field['format'] else ''
     }
 
 def translate_format(format_str):
