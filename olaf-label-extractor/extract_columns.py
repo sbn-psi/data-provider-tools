@@ -52,10 +52,11 @@ def translate_file(infile):
 
     if soup.find('Table_Character'):
         return translate_table(soup.find('Table_Character'), 'Field_Character', FW_LINES)
-    elif soup.find('Table_Delimited'):
+
+    if soup.find('Table_Delimited'):
         return translate_table(soup.find('Table_Delimited'), 'Field_Delimited', CSV_LINES)
-    else:
-        return 'Unrecognized table.'
+
+    return 'Unrecognized table.'
 
 def translate_table(table, field_spec, linespec):
     '''
