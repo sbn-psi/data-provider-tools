@@ -27,6 +27,11 @@ FORMATS = {
 FW_LINES = ['name', 'data_type', 'units', 'missing_constant', 'description', 'format']
 CSV_LINES = ['name', 'data_type', 'units', 'missing_constant', 'description']
 
+MODES = [
+    ('Table_Character', 'Field_Character', FW_LINES),
+    ('Table_Delimited', 'Field_Delimited', CSV_LINES)
+]
+
 def main(argv=None):
     '''
     Entry point into the program. Takes the name of a PDS4 label file
@@ -50,11 +55,9 @@ def translate_file(infile):
     '''
     soup = BeautifulSoup(infile, 'lxml-xml')
 
-    if soup.find('Table_Character'):
-        return translate_table(soup.find('Table_Character'), 'Field_Character', FW_LINES)
-
-    if soup.find('Table_Delimited'):
-        return translate_table(soup.find('Table_Delimited'), 'Field_Delimited', CSV_LINES)
+    for table_attr, field_attr, linespec in MODES:
+        if soup.find(table_attr):
+            return translate_table(soup.find(table_attr), field_attr, linespec)
 
     return 'Unrecognized table.'
 
