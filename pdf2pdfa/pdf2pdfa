@@ -6,7 +6,7 @@ PDFA_FILE="${BASE_FILE}".pdfa.pdf
 
 VERAPDF_CMD=~/verapdf/verapdf
 
-gs -dPDFA=1 -dPDFACompatibilityPolicy=1 -dBATCH -dNOPAUSE -dNOOUTERSAVE -sDEVICE=pdfwrite -sColorConverionStrategy=/UseDeviceIndependentColor -sOutputFile=${PDFA_FILE} PDFA_def.ps "${PDF_FILE}"
+gs -dPDFA=1 -dPDFACompatibilityPolicy=1 -dBATCH -dNOPAUSE -dNOOUTERSAVE -sDEVICE=pdfwrite -dNOSAFER -sColorConverionStrategy=/UseDeviceIndependentColor -sOutputFile=${PDFA_FILE} PDFA_def.ps "${PDF_FILE}"
 
 if [ -e "$VERAPDF_CMD" ]; then
     echo "Running verapdf..."
