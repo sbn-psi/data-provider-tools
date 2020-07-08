@@ -76,7 +76,7 @@ def extract(field):
     '''
     return {
         'name': field.find('name').string,
-        'description': field.description.string,
+        'description': field.description.string if field.description else "placeholder",
         'data_type': field.data_type.string,
         'units': field.unit.string if field.unit else '',
         'missing_constant':
