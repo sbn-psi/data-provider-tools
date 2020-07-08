@@ -41,13 +41,15 @@ def main(argv=None):
         argv = sys.argv
 
     infilename = argv[1]
-    outfilename = argv[2]
+    #outfilename = argv[2]
 
     with open(infilename) as infile:
         contents = translate_file(infile)
+    
+    print(contents)
 
-    with open(outfilename, 'w') as outfile:
-        outfile.write(contents)
+    #with open(outfilename, 'w') as outfile:
+    #    outfile.write(contents)
 
 def translate_file(infile):
     '''
