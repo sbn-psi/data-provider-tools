@@ -70,6 +70,7 @@ def extract(soup):
     primary_result_summary = soup.find("Primary_Result_Summary")
     wavelength_range = primary_result_summary.find_all("wavelength_range")
     facets = primary_result_summary.find_all("Science_Facets")
+    reference_keys = soup.find_all("External_Reference")
 
     return {
         "File Name": file_element.file_name.string,
@@ -84,7 +85,7 @@ def extract(soup):
         "Start Time": time_coordinates.start_date_time.string,
         "Stop Time": time_coordinates.stop_date_time.string,
         "Product Description": citation_information.description.string.replace("\n", ""),
-        "Reference Key": "Ref.Bookmark"
+        "Reference Key": ",".join(x.reference_text.string for x in reference_keys)
     }
 
 def osc_name(osc):
