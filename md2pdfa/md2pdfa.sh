@@ -1,10 +1,12 @@
 MDFILE=$1
 DOCX_FILE=${MDFILE/.md/.docx}
 PDFA_FILE=${MDFILE/.md/.pdf}
+OUTDIR=`dirname $1`
+
 VERAPDF_CMD=~/verapdf/verapdf
 
 pandoc -o $DOCX_FILE $MDFILE
-soffice --headless --convert-to pdf:"writer_pdf_Export:SelectPdfVersion=1" --outdir ./ $DOCX_FILE
+soffice --headless --convert-to pdf:"writer_pdf_Export:SelectPdfVersion=1" --outdir $OUTDIR $DOCX_FILE
 
 if [ -e "$VERAPDF_CMD" ]; then
     echo "Running verapdf..."
