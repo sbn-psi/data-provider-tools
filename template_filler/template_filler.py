@@ -14,8 +14,7 @@ def main():
     args = parser.parse_args()
 
     template_filename = os.path.basename(args.template_file)
-    specified_template_directory = os.path.dirname(args.template_file)
-    template_directory = specified_template_directory if os.path.isabs(specified_template_directory) else os.path.join(".", specified_template_directory)
+    template_directory = os.path.realpath(os.path.dirname(args.template_file))
     template_loader = jinja2.FileSystemLoader(template_directory)
     environment = jinja2.Environment(loader=template_loader, autoescape=jinja2.select_autoescape())
     template = environment.get_template(template_filename)
