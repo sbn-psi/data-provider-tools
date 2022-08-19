@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import csv
-import re
 import sys
 import argparse
 import jinja2
