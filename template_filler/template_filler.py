@@ -22,13 +22,9 @@ def main():
     template = environment.get_template(template_filename)
 
     with open(args.csv_file) as f:
-        reader = csv.DictReader(f)
-        for d in reader:
-            filename = d["filename"]
-            contents = template.render(d)
-            with open(os.path.join(args.output_path, filename), "w") as outfile:
-                outfile.write(contents)
-
+        for d in csv.DictReader(f):
+            with open(os.path.join(args.output_path, d["filename"]), "w") as outfile:
+                outfile.write(template.render(d))
 
 if __name__ == '__main__':
     sys.exit(main())
