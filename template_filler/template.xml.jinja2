@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1A00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Product_Observational xmlns="http://pds.nasa.gov/pds4/pds/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1A00.xsd">
+  <Identification_Area>
+    <logical_identifier>{{ lid }}</logical_identifier>
+    <version_id>{{ vid }}</version_id>
+    <title>{{ title }}</title>
+    <information_model_version>1.10.0.0</information_model_version>
+    <product_class>Product_Observational</product_class>
+    <Citation_Information>
+      <author_list>Vilas, F.;Smith, B.A.;McFadden, L.A.;Gaffey, M.J.;Larson, S.M.;Hatch, E.C.;Jarvis,
+K.S.</author_list>
+      <publication_year>1998</publication_year>
+      <description>Asteroid reflectance spectrum by Vilas  
+        and collaborators</description>
+    </Citation_Information>
+    <Modification_History>
+      <Modification_Detail>
+        <modification_date>2020-06-12</modification_date>
+        <version_id>1.0</version_id>
+        <description>Migrated from SPECTRA_A1982DV_TAB in EAR-A-3-RDR-VILAS-ASTEROID-SPECTRA-V1.1</description>
+      </Modification_Detail>
+    </Modification_History>
+  </Identification_Area>
+  <Observation_Area>
+    <Time_Coordinates>
+      <start_date_time>{{ startdate }}</start_date_time>
+      <stop_date_time>{{ stopdate }}</stop_date_time>
+    </Time_Coordinates>
+    <Primary_Result_Summary>
+      <purpose>Science</purpose>
+      <processing_level>Calibrated</processing_level>
+      <Science_Facets>
+        <wavelength_range>Infrared</wavelength_range>
+        <discipline_name>Flux Measurements</discipline_name>
+        <facet1>Photometry</facet1>
+      </Science_Facets>
+    </Primary_Result_Summary>
+    <Investigation_Area>
+      <name>None</name>
+      <type>Individual Investigation</type>
+      <Internal_Reference>
+        <lid_reference>urn:nasa:pds:context:investigation:individual.none</lid_reference>
+        <reference_type>data_to_investigation</reference_type>
+      </Internal_Reference>
+    </Investigation_Area>
+    <Observing_System>
+      <Observing_System_Component>
+        <name>Fink Spectrograph</name>
+        <type>Instrument</type>
+        <description>The description for Fink Spectrograph can be found in the document collection for
+this bundle.</description>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument:mount_bigelow.1m54.finkspec</lid_reference>
+          <reference_type>is_instrument</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+      <Observing_System_Component>
+        <name>Mount Bigelow (Catalina) Station</name>
+        <type>Observatory</type>
+        <description>The description for Mount Bigelow (Catalina) Station can be found in the document
+collection for this bundle.</description>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:facility:observatory.mount_bigelow</lid_reference>
+          <reference_type>is_facility</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+      <Observing_System_Component>
+        <name>1.54-m Cassegrain/Coude reflector at Mount Bigelow (Catalina) Station</name>
+        <type>Telescope</type>
+        <description>The description for 1.54-m Cassegrain/Coude reflector at Mount Bigelow (Catalina)
+Station can be found in the document collection for this bundle.</description>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:telescope:mount_bigelow.1m54</lid_reference>
+          <reference_type>is_telescope</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+    </Observing_System>
+    <Target_Identification>
+      <name>(3288) Seleucus</name>
+      <type>Asteroid</type>
+    </Target_Identification>
+  </Observation_Area>
+  <Reference_List>
+    <Internal_Reference>
+      <lid_reference>urn:nasa:pds:gbo.ast.vilas.spectra:document:bundle_description</lid_reference>
+      <reference_type>data_to_document</reference_type>
+    </Internal_Reference>
+    <External_Reference>
+      <reference_text>VILASETAL1985</reference_text>
+      <description>Vilas, F., D.J. Tholen, L.A. Lebofsky, H. Campins,  
+        G. Veeder, R. Binzel, and A. Tokunaga, Physical parameters of         
+        near-earth asteroid 1982 DV, Icarus 63, 201-205, 1985.</description>
+    </External_Reference>
+  </Reference_List>
+  <File_Area_Observational>
+    <File>
+      <file_name>a1982dv.tab</file_name>
+      <local_identifier>SPECTRA_A1982DV_TAB</local_identifier>
+      <creation_date_time>2005-06-07</creation_date_time>
+      <file_size unit="byte">9480</file_size>
+      <records>395</records>
+    </File>
+    <Table_Character>
+      <local_identifier>table</local_identifier>
+      <offset unit="byte">0</offset>
+      <records>395</records>
+      <description>Asteroid reflectance spectrum by Vilas  
+        and collaborators</description>
+      <record_delimiter>Carriage-Return Line-Feed</record_delimiter>
+      <Record_Character>
+        <fields>3</fields>
+        <groups>0</groups>
+        <record_length unit="byte">24</record_length>
+        <Field_Character>
+          <name>WAVELENGTH</name>
+          <field_number>1</field_number>
+          <field_location unit="byte">1</field_location>
+          <data_type>ASCII_Real</data_type>
+          <field_length unit="byte">8</field_length>
+          <field_format>%8.5f</field_format>
+          <unit>Micron</unit>
+          <description>Wavelength of observation in microns</description>
+        </Field_Character>
+        <Field_Character>
+          <name>REFLECTANCE</name>
+          <field_number>2</field_number>
+          <field_location unit="byte">10</field_location>
+          <data_type>ASCII_Real</data_type>
+          <field_length unit="byte">6</field_length>
+          <field_format>%6.3f</field_format>
+          <description>Reflectance at the given wavelength</description>
+        </Field_Character>
+        <Field_Character>
+          <name>REFLECTANCE_ERROR</name>
+          <field_number>3</field_number>
+          <field_location unit="byte">17</field_location>
+          <data_type>ASCII_Real</data_type>
+          <field_length unit="byte">6</field_length>
+          <field_format>%6.3f</field_format>
+          <description>Error in REFLECTANCE</description>
+          <Special_Constants>
+            <missing_constant>-9.999</missing_constant>
+          </Special_Constants>
+        </Field_Character>
+      </Record_Character>
+    </Table_Character>
+  </File_Area_Observational>
+</Product_Observational>
