@@ -22,9 +22,9 @@ def main():
     template_loader = jinja2.FileSystemLoader(template_directory)
     environment = jinja2.Environment(loader=template_loader, autoescape=jinja2.select_autoescape())
     template = environment.get_template(template_filename)
-    filenameColumn = "filename"
-    productIdColumn = "productId"
-    dataFileColumn = "dataFile"
+    filenameColumn =args.filename_column
+    productIdColumn = args.product_id_column
+    dataFileColumn = args.data_file_column
 
     with open(args.csv_file) as f:
         for d in csv.DictReader(f):
