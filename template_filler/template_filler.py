@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import csv
+from dataclasses import replace
 import sys
 import argparse
 import jinja2
@@ -18,11 +19,22 @@ def main():
     template_loader = jinja2.FileSystemLoader(template_directory)
     environment = jinja2.Environment(loader=template_loader, autoescape=jinja2.select_autoescape())
     template = environment.get_template(template_filename)
+    filenameColumn = "filename"
+    productIdColumn = "productId"
+    dataFileColumn = "dataFile"
 
     with open(args.csv_file) as f:
         for d in csv.DictReader(f):
-            with open(os.path.join(args.output_path, d["filename"]), "w") as outfile:
+            d2 = postProcess(d, filenameColumn, productIdColumn, dataFileColumn)
+            with open(os.path.join(args.output_path, d[filenameColumn]), "w") as outfile:
                 outfile.write(template.render(d))
+
+def postProcess(d, filenameColumn, productIdColumn, dataFileColumn):
+    if filenameColumn not in d:
+        d[filenameColumn] = str.replace(d[dataFileColumn], ".fit", ".xml")
+    if productIdColumn not in d:
+        d[productIdColumn] = str.replace(d[dataFileColumn], ".", "_")
+    return d
 
 if __name__ == '__main__':
     sys.exit(main())
