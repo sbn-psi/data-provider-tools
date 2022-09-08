@@ -12,6 +12,9 @@ def main():
     parser.add_argument("--template-file", help="The path to the template file used to generate the labels", required=True)
     parser.add_argument("--csv-file", help="The path to the CSV file that will supply values for the templates", required=True)
     parser.add_argument("--output-path", help="The directory where the generated labels will go.", required=True)
+    parser.add_argument("--filename-column", help="The column in the CSV file that specifies the label file name", default="filename")
+    parser.add_argument("--product-id-column", help="The column in the CSV file that specifies the product id portion of the LID", default="productId")
+    parser.add_argument("--data-file-column", help="The column in the CSV file that specifies the data file name", default="dataFile")
     args = parser.parse_args()
 
     template_filename = os.path.basename(args.template_file)
