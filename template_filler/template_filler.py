@@ -34,8 +34,11 @@ def generateLabels(csv_file, template, output_path, filenameColumn, productIdCol
     with open(csv_file) as f:
         for d in csv.DictReader(f):
             d2 = postProcess(d, filenameColumn, productIdColumn, dataFileColumn)
-            with open(os.path.join(output_path, d2[filenameColumn]), "w") as outfile:
-                outfile.write(template.render(d2))
+            generateLabel(d2, output_path, filenameColumn, template)
+
+def generateLabel(d2, output_path, filenameColumn, template):
+    with open(os.path.join(output_path, d2[filenameColumn]), "w") as outfile:
+        outfile.write(template.render(d2))
 
 def postProcess(d, filenameColumn, productIdColumn, dataFileColumn):
     if filenameColumn not in d:
