@@ -17,17 +17,8 @@ def main():
     parser.add_argument("--data-file-column", help="The column in the CSV file that specifies the data file name", default="dataFile")
     args = parser.parse_args()
 
-    filenameColumn =args.filename_column
-    productIdColumn = args.product_id_column
-    dataFileColumn = args.data_file_column
-
     template = loadTemplate(args.template_file)
-
-    with open(args.csv_file) as f:
-        for d in csv.DictReader(f):
-            d2 = postProcess(d, filenameColumn, productIdColumn, dataFileColumn)
-            with open(os.path.join(args.output_path, d2[filenameColumn]), "w") as outfile:
-                outfile.write(template.render(d2))
+    generateLabels(args.csv_file, template, args.output_path, args.filename_column, args.product_id_column, args.data_file_column)
 
 def loadTemplate(template_file):
     template_filename = os.path.basename(template_file)
@@ -36,6 +27,12 @@ def loadTemplate(template_file):
     environment = jinja2.Environment(loader=template_loader, autoescape=jinja2.select_autoescape())
     return environment.get_template(template_filename)
 
+def generateLabels(csv_file, template, output_path, filenameColumn, productIdColumn, dataFileColumn):
+    with open(csv_file) as f:
+        for d in csv.DictReader(f):
+            d2 = postProcess(d, filenameColumn, productIdColumn, dataFileColumn)
+            with open(os.path.join(output_path, d2[filenameColumn]), "w") as outfile:
+                outfile.write(template.render(d2))
 
 def postProcess(d, filenameColumn, productIdColumn, dataFileColumn):
     if filenameColumn not in d:
