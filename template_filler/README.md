@@ -33,8 +33,10 @@ The script will take the template file, inject values from the CSV file, and wri
 
 The easiest way to install Jinja is using pip, either on its own or with the provided requirements file:
 
-* `pip install jinja2` or
-* `pip install -r requirements.txt`
+* `pip3 install jinja2` or
+* `pip3 install -r requirements.txt`
+
+Depending on your platform, you might need to run `pip` instead of `pip3`.
 
 ## Writing a template
 
