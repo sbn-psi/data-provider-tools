@@ -29,8 +29,8 @@ def main():
     with open(args.csv_file) as f:
         for d in csv.DictReader(f):
             d2 = postProcess(d, filenameColumn, productIdColumn, dataFileColumn)
-            with open(os.path.join(args.output_path, d[filenameColumn]), "w") as outfile:
-                outfile.write(template.render(d))
+            with open(os.path.join(args.output_path, d2[filenameColumn]), "w") as outfile:
+                outfile.write(template.render(d2))
 
 def postProcess(d, filenameColumn, productIdColumn, dataFileColumn):
     if filenameColumn not in d:
