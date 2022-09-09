@@ -34,7 +34,8 @@ def main():
 
 def postProcess(d, filenameColumn, productIdColumn, dataFileColumn):
     if filenameColumn not in d:
-        d[filenameColumn] = str.replace(d[dataFileColumn], ".fit", ".xml")
+        root, ext = os.path.splitext(d[dataFileColumn])
+        d[filenameColumn] = root + ".xml"
     if productIdColumn not in d:
         d[productIdColumn] = str.replace(d[dataFileColumn], ".", "_")
     return d
