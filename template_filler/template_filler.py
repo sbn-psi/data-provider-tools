@@ -8,6 +8,11 @@ import jinja2
 import os.path
 
 def main():
+    args = getArgs()
+    template = loadTemplate(args.template_file)
+    generateLabels(args.csv_file, template, args.output_path, args.filename_column, args.product_id_column, args.data_file_column)
+
+def getArgs():
     parser = argparse.ArgumentParser()
     parser.add_argument("--template-file", help="The path to the template file used to generate the labels", required=True)
     parser.add_argument("--csv-file", help="The path to the CSV file that will supply values for the templates", required=True)
@@ -15,10 +20,8 @@ def main():
     parser.add_argument("--filename-column", help="The column in the CSV file that specifies the label file name", default="filename")
     parser.add_argument("--product-id-column", help="The column in the CSV file that specifies the product id portion of the LID", default="productId")
     parser.add_argument("--data-file-column", help="The column in the CSV file that specifies the data file name", default="dataFile")
-    args = parser.parse_args()
+    return parser.parse_args()
 
-    template = loadTemplate(args.template_file)
-    generateLabels(args.csv_file, template, args.output_path, args.filename_column, args.product_id_column, args.data_file_column)
 
 def loadTemplate(template_file):
     template_filename = os.path.basename(template_file)
