@@ -8,6 +8,11 @@ import jinja2
 import os.path
 
 def main():
+    args = getArgs()
+    template = loadTemplate(args.template_file)
+    generateLabels(args.csv_file, template, args.output_path, args.filename_column, args.product_id_column, args.data_file_column)
+
+def getArgs():
     parser = argparse.ArgumentParser()
     parser.add_argument("--template-file", help="The path to the template file used to generate the labels", required=True)
     parser.add_argument("--csv-file", help="The path to the CSV file that will supply values for the templates", required=True)
@@ -15,22 +20,25 @@ def main():
     parser.add_argument("--filename-column", help="The column in the CSV file that specifies the label file name", default="filename")
     parser.add_argument("--product-id-column", help="The column in the CSV file that specifies the product id portion of the LID", default="productId")
     parser.add_argument("--data-file-column", help="The column in the CSV file that specifies the data file name", default="dataFile")
-    args = parser.parse_args()
+    return parser.parse_args()
 
-    template_filename = os.path.basename(args.template_file)
-    template_directory = os.path.realpath(os.path.dirname(args.template_file))
+
+def loadTemplate(template_file):
+    template_filename = os.path.basename(template_file)
+    template_directory = os.path.realpath(os.path.dirname(template_file))
     template_loader = jinja2.FileSystemLoader(template_directory)
     environment = jinja2.Environment(loader=template_loader, autoescape=jinja2.select_autoescape())
-    template = environment.get_template(template_filename)
-    filenameColumn =args.filename_column
-    productIdColumn = args.product_id_column
-    dataFileColumn = args.data_file_column
+    return environment.get_template(template_filename)
 
-    with open(args.csv_file) as f:
+def generateLabels(csv_file, template, output_path, filenameColumn, productIdColumn, dataFileColumn):
+    with open(csv_file) as f:
         for d in csv.DictReader(f):
             d2 = postProcess(d, filenameColumn, productIdColumn, dataFileColumn)
-            with open(os.path.join(args.output_path, d2[filenameColumn]), "w") as outfile:
-                outfile.write(template.render(d2))
+            generateLabel(d2, output_path, filenameColumn, template)
+
+def generateLabel(d2, output_path, filenameColumn, template):
+    with open(os.path.join(output_path, d2[filenameColumn]), "w") as outfile:
+        outfile.write(template.render(d2))
 
 def postProcess(d, filenameColumn, productIdColumn, dataFileColumn):
     if filenameColumn not in d:
