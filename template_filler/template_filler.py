@@ -25,7 +25,7 @@ def getArgs():
 
 def loadTemplate(template_file):
     template_filename = os.path.basename(template_file)
-    template_directory = os.path.realpath(os.path.dirname(args.template_file))
+    template_directory = os.path.realpath(os.path.dirname(template_file))
     template_loader = jinja2.FileSystemLoader(template_directory)
     environment = jinja2.Environment(loader=template_loader, autoescape=jinja2.select_autoescape())
     return environment.get_template(template_filename)
