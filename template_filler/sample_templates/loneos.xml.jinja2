@@ -70,42 +70,42 @@
       <type>Asteroid</type>
     </Target_Identification>
     <Discipline_Area>
-    <survey:Survey>
-      {% if field_id %}<survey:field_id>{{ field_id }}</survey:field_id>{% endif %}
-      <survey:observation_purpose>Survey</survey:observation_purpose>
-      <survey:observation_technique>Sidereal Stare</survey:observation_technique>
-      <survey:Image_Corners>
-        <survey:equinox>J2000.0</survey:equinox>
-      <survey:Corner_Position>
-     <survey:corner_identification>Top Left</survey:corner_identification>
-     <survey:Coordinate>
-     <survey:right_ascension unit="deg">{{ top_left_ra }}</survey:right_ascension>
-     <survey:declination unit="deg">{{ top_left_dec }}</survey:declination>
-     </survey:Coordinate>
-     </survey:Corner_Position>
-     <survey:Corner_Position>
-    <survey:corner_identification>Top Right</survey:corner_identification>
-     <survey:Coordinate>
-     <survey:right_ascension unit="deg">{{ top_right_ra }}</survey:right_ascension>
-     <survey:declination unit="deg">{{ top_right_dec }}</survey:declination>
-     </survey:Coordinate>
-     </survey:Corner_Position>
-    <survey:Corner_Position>
-     <survey:corner_identification>Bottom Left</survey:corner_identification>
-     <survey:Coordinate>
-     <survey:right_ascension unit="deg">{{ bottom_left_ra }}</survey:right_ascension>
-     <survey:declination unit="deg">{{ bottom_left_dec }}</survey:declination>
-     </survey:Coordinate>
-     </survey:Corner_Position>
-     <survey:Corner_Position>
-      <survey:corner_identification>Bottom Right</survey:corner_identification>
-      <survey:Coordinate>
-     <survey:right_ascension unit="deg">{{ bottom_right_ra }}</survey:right_ascension>
-     <survey:declination unit="deg">{{ bottom_right_dec }}</survey:declination>
-      </survey:Coordinate>
-      </survey:Corner_Position>
-     </survey:Image_Corners>
-     </survey:Survey>
+      <survey:Survey>
+        {% if field_id %}<survey:field_id>{{ field_id }}</survey:field_id>{% endif %}
+        <survey:observation_purpose>Survey</survey:observation_purpose>
+        <survey:observation_technique>Sidereal Stare</survey:observation_technique>
+        <survey:Image_Corners>
+          <survey:equinox>J2000.0</survey:equinox>
+          <survey:Corner_Position>
+            <survey:corner_identification>Top Left</survey:corner_identification>
+            <survey:Coordinate>
+              <survey:right_ascension unit="deg">{{ top_left_ra }}</survey:right_ascension>
+              <survey:declination unit="deg">{{ top_left_dec }}</survey:declination>
+            </survey:Coordinate>
+          </survey:Corner_Position>
+          <survey:Corner_Position>
+            <survey:corner_identification>Top Right</survey:corner_identification>
+            <survey:Coordinate>
+              <survey:right_ascension unit="deg">{{ top_right_ra }}</survey:right_ascension>
+              <survey:declination unit="deg">{{ top_right_dec }}</survey:declination>
+            </survey:Coordinate>
+          </survey:Corner_Position>
+          <survey:Corner_Position>
+            <survey:corner_identification>Bottom Left</survey:corner_identification>
+            <survey:Coordinate>
+              <survey:right_ascension unit="deg">{{ bottom_left_ra }}</survey:right_ascension>
+              <survey:declination unit="deg">{{ bottom_left_dec }}</survey:declination>
+            </survey:Coordinate>
+          </survey:Corner_Position>
+          <survey:Corner_Position>
+            <survey:corner_identification>Bottom Right</survey:corner_identification>
+            <survey:Coordinate>
+              <survey:right_ascension unit="deg">{{ bottom_right_ra }}</survey:right_ascension>
+              <survey:declination unit="deg">{{ bottom_right_dec }}</survey:declination>
+            </survey:Coordinate>
+          </survey:Corner_Position>
+        </survey:Image_Corners>
+      </survey:Survey>
       <geom:Geometry>
         <geom:Image_Display_Geometry>
           <geom:Display_Direction>
