@@ -19,8 +19,8 @@
   </Identification_Area>
   <Observation_Area>
     <Time_Coordinates>
-      <start_date_time>{{ start_date_time }}</start_date_time>
-      <stop_date_time>{{ stop_date_time }}</stop_date_time>
+      <start_date_time>{{ start_date_time }}Z</start_date_time>
+      <stop_date_time>{{ stop_date_time }}Z</stop_date_time>
     </Time_Coordinates>
     <Primary_Result_Summary>
       <purpose>Science</purpose>
@@ -71,7 +71,7 @@
     </Target_Identification>
     <Discipline_Area>
     <survey:Survey>
-      <survey:field_id>{{ field_id }}</survey:field_id>
+      {% if field_id %}<survey:field_id>{{ field_id }}</survey:field_id>{% endif %}
       <survey:observation_purpose>Survey</survey:observation_purpose>
       <survey:observation_technique>Sidereal Stare</survey:observation_technique>
       <survey:Image_Corners>
@@ -105,6 +105,7 @@
       </survey:Coordinate>
       </survey:Corner_Position>
      </survey:Image_Corners>
+     </survey:Survey>
       <geom:Geometry>
         <geom:Image_Display_Geometry>
           <geom:Display_Direction>
@@ -148,12 +149,12 @@
   </Observation_Area>
   <Reference_List>
     <Source_Product_Internal>
-      <lidvid_reference>urn:nasa:pds:preview:miscellaneous:{{ source_product_1 }}</lidvid_reference>
+      <lidvid_reference>urn:nasa:pds:preview:miscellaneous:{{ source_product_1 }}::1.0</lidvid_reference>
       <reference_type>data_to_raw_source_product</reference_type>
       <comment>First half of the reconstructed image</comment>
     </Source_Product_Internal>
     <Source_Product_Internal>
-      <lidvid_reference>urn:nasa:pds:preview:miscellaneous:{{ source_product_2 }}</lidvid_reference>
+      <lidvid_reference>urn:nasa:pds:preview:miscellaneous:{{ source_product_2 }}::1.0</lidvid_reference>
       <reference_type>data_to_raw_source_product</reference_type>
       <comment>Second half of the reconstructed image</comment>
     </Source_Product_Internal>
