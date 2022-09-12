@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1F00.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://pds.nasa.gov/pds4/img/v1/PDS4_IMG_1F00_1810.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://pds.nasa.gov/pds4/geom/v1/PDS4_GEOM_1F00_1910.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://pds.nasa.gov/pds4/disp/v1/PDS4_DISP_1F00_1500.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="https://pds.nasa.gov/pds4/survey/v1/PDS4_SURVEY_1F00_1010.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Product_Observational xmlns="http://pds.nasa.gov/pds4/pds/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:img="http://pds.nasa.gov/pds4/img/v1" xmlns:geom="http://pds.nasa.gov/pds4/geom/v1" xmlns:disp="http://pds.nasa.gov/pds4/disp/v1" xmlns:survey="http://pds.nasa.gov/pds4/survey/v1" xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1 https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1F00.xsd http://pds.nasa.gov/pds4/img/v1 https://pds.nasa.gov/pds4/img/v1/PDS4_IMG_1F00_1810.xsd http://pds.nasa.gov/pds4/geom/v1 https://pds.nasa.gov/pds4/geom/v1/PDS4_GEOM_1F00_1910.xsd http://pds.nasa.gov/pds4/disp/v1 https://pds.nasa.gov/pds4/disp/v1/PDS4_DISP_1F00_1500.xsd http://pds.nasa.gov/pds4/survey/v1 https://pds.nasa.gov/pds4/survey/v1/PDS4_SURVEY_1F00_1010.xsd">
+  <Identification_Area>
+    <logical_identifier>urn:nasa:pds:gbo.ast.survey.loneos:data_processed:{{ product_id }}</logical_identifier>
+    <version_id>1.0</version_id>
+    <title>{{ title }}</title>
+    <information_model_version>1.15.0.0</information_model_version>
+    <product_class>Product_Observational</product_class>
+    <Citation_Information>
+      <editor_list>Tedesco, E.F.</editor_list>
+      <publication_year>2023</publication_year>
+      <description>Asteroid survey image from the LONEOS survey. </description>
+    </Citation_Information>
+  </Identification_Area>
+  <Observation_Area>
+    <Time_Coordinates>
+      <start_date_time>{{ start_date_time }}</start_date_time>
+      <stop_date_time>{{ stop_date_time }}</stop_date_time>
+    </Time_Coordinates>
+    <Primary_Result_Summary>
+      <purpose>Science</purpose>
+      <processing_level>Raw</processing_level>
+      <Science_Facets>
+        <wavelength_range>Visible</wavelength_range>
+        <discipline_name>Imaging</discipline_name>
+        <facet1>Grayscale</facet1>
+      </Science_Facets>
+    </Primary_Result_Summary>
+    <Investigation_Area>
+      <name>Lowell Observatory Near Earth Object Search</name>
+      <type>Individual Investigation</type>
+      <Internal_Reference>
+        <lid_reference>urn:nasa:pds:context:investigation:individual.lowell_observatory_near_earth_object_search</lid_reference>
+        <reference_type>data_to_investigation</reference_type>
+      </Internal_Reference>
+    </Investigation_Area>
+    <Observing_System>
+      <Observing_System_Component>
+        <name>LONEOS 0.6m Schmidt Telescope</name>
+        <type>Telescope</type>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:telescope:lowell-anderson_mesa.loneos_0m60</lid_reference>
+          <reference_type>is_telescope</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+      <Observing_System_Component>
+        <name>Anderson Mesa Station</name>
+        <type>Host</type>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:facility:observatory.lowell</lid_reference>
+          <reference_type>is_facility</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+      <Observing_System_Component>
+        <name>LONEOS Mosaic CCD</name>
+        <type>Instrument</type>
+        <Internal_Reference>
+          <lid_reference>urn:nasa:pds:context:instrument:lowell-anderson_mesa.loneos_0m60.loneos_mosaic_ccd</lid_reference>
+          <reference_type>is_instrument</reference_type>
+        </Internal_Reference>
+      </Observing_System_Component>
+    </Observing_System>
+    <Target_Identification>
+      <name>Multiple Asteroids</name>
+      <type>Asteroid</type>
+    </Target_Identification>
+    <Discipline_Area>
+    <survey:Survey>
+      <survey:field_id>{{ field_id }}</survey:field_id>
+      <survey:observation_purpose>Survey</survey:observation_purpose>
+      <survey:observation_technique>Sidereal Stare</survey:observation_technique>
+      <survey:Image_Corners>
+        <survey:equinox>J2000.0</survey:equinox>
+      <survey:Corner_Position>
+     <survey:corner_identification>Top Left</survey:corner_identification>
+     <survey:Coordinate>
+     <survey:right_ascension unit="deg">{{ top_left_ra }}</survey:right_ascension>
+     <survey:declination unit="deg">{{ top_left_dec }}</survey:declination>
+     </survey:Coordinate>
+     </survey:Corner_Position>
+     <survey:Corner_Position>
+    <survey:corner_identification>Top Right</survey:corner_identification>
+     <survey:Coordinate>
+     <survey:right_ascension unit="deg">{{ top_right_ra }}</survey:right_ascension>
+     <survey:declination unit="deg">{{ top_right_dec }}</survey:declination>
+     </survey:Coordinate>
+     </survey:Corner_Position>
+    <survey:Corner_Position>
+     <survey:corner_identification>Bottom Left</survey:corner_identification>
+     <survey:Coordinate>
+     <survey:right_ascension unit="deg">{{ bottom_left_ra }}</survey:right_ascension>
+     <survey:declination unit="deg">{{ bottom_left_dec }}</survey:declination>
+     </survey:Coordinate>
+     </survey:Corner_Position>
+     <survey:Corner_Position>
+      <survey:corner_identification>Bottom Right</survey:corner_identification>
+      <survey:Coordinate>
+     <survey:right_ascension unit="deg">{{ bottom_right_ra }}</survey:right_ascension>
+     <survey:declination unit="deg">{{ bottom_right_dec }}</survey:declination>
+      </survey:Coordinate>
+      </survey:Corner_Position>
+     </survey:Image_Corners>
+      <geom:Geometry>
+        <geom:Image_Display_Geometry>
+          <geom:Display_Direction>
+            <geom:horizontal_display_axis>Sample</geom:horizontal_display_axis>
+            <geom:horizontal_display_direction>Right to Left</geom:horizontal_display_direction>
+            <geom:vertical_display_axis>Line</geom:vertical_display_axis>
+            <geom:vertical_display_direction>Top to Bottom</geom:vertical_display_direction>
+          </geom:Display_Direction>
+          <geom:Object_Orientation_RA_Dec>
+            <geom:right_ascension_angle unit="deg">{{ center_ra }}</geom:right_ascension_angle>
+            <geom:declination_angle unit="deg">{{ center_dec }}</geom:declination_angle>
+            <geom:celestial_north_clock_angle unit="deg">{{ north_clock_angle }}</geom:celestial_north_clock_angle>
+            <geom:Reference_Frame_Identification>
+              <geom:name>J2000</geom:name>
+            </geom:Reference_Frame_Identification>
+          </geom:Object_Orientation_RA_Dec>
+        </geom:Image_Display_Geometry>
+      </geom:Geometry>
+      <img:Imaging>
+        <Local_Internal_Reference>
+          <local_identifier_reference>primary_image</local_identifier_reference>
+          <local_reference_type>imaging_parameters_to_image_object</local_reference_type>
+        </Local_Internal_Reference>
+        <img:Exposure>
+          <img:exposure_duration unit="s">{{ exposure_duration }}</img:exposure_duration>
+        </img:Exposure>
+      </img:Imaging>
+      <disp:Display_Settings>
+        <Local_Internal_Reference>
+          <local_identifier_reference>primary_image</local_identifier_reference>
+          <local_reference_type>display_settings_to_array</local_reference_type>
+        </Local_Internal_Reference>
+        <disp:Display_Direction>
+          <disp:horizontal_display_axis>Sample</disp:horizontal_display_axis>
+          <disp:horizontal_display_direction>Right to Left</disp:horizontal_display_direction>
+          <disp:vertical_display_axis>Line</disp:vertical_display_axis>
+          <disp:vertical_display_direction>Top to Bottom</disp:vertical_display_direction>
+        </disp:Display_Direction>
+      </disp:Display_Settings>
+    </Discipline_Area>
+  </Observation_Area>
+  <Reference_List>
+    <Source_Product_Internal>
+      <lidvid_reference>urn:nasa:pds:preview:miscellaneous:{{ source_product_1 }}</lidvid_reference>
+      <reference_type>data_to_raw_source_product</reference_type>
+      <comment>First half of the reconstructed image</comment>
+    </Source_Product_Internal>
+    <Source_Product_Internal>
+      <lidvid_reference>urn:nasa:pds:preview:miscellaneous:{{ source_product_2 }}</lidvid_reference>
+      <reference_type>data_to_raw_source_product</reference_type>
+      <comment>Second half of the reconstructed image</comment>
+    </Source_Product_Internal>
+  </Reference_List>
+  <File_Area_Observational>
+    <File>
+      <file_name>{{ data_file_name }}</file_name>
+      <local_identifier>file</local_identifier>
+      <file_size unit="byte">{{ data_file_size }}</file_size>
+    </File>
+    <Header>
+      <offset unit="byte">0</offset>
+      <object_length unit="byte">{{ header_length }}</object_length>
+      <parsing_standard_id>FITS 3.0</parsing_standard_id>
+      <description>FITS attached header</description>
+    </Header>
+    <Array_2D>
+      <local_identifier>primary_image</local_identifier>
+      <offset unit="byte">{{ image_offset }}</offset>
+      <axes>2</axes>
+      <axis_index_order>Last Index Fastest</axis_index_order>
+      <description>LONEOS image</description>
+      <Element_Array>
+        <data_type>SignedMSB2</data_type>
+        <unit>counts</unit>
+        <scaling_factor>{{ scaling_factor }}</scaling_factor>
+        <value_offset>{{ offset }}</value_offset>
+      </Element_Array>
+      <Axis_Array>
+        <axis_name>Line</axis_name>
+        <elements>{{ lines }}</elements>
+        <sequence_number>1</sequence_number>
+      </Axis_Array>
+      <Axis_Array>
+        <axis_name>Sample</axis_name>
+        <elements>{{ samples }}</elements>
+        <sequence_number>2</sequence_number>
+      </Axis_Array>
+    </Array_2D>
+  </File_Area_Observational>
+</Product_Observational>
