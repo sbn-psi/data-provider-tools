@@ -4,6 +4,7 @@ import csv
 import sys
 import argparse
 import jinja2
+import os
 import os.path
 
 def main():
@@ -36,7 +37,10 @@ def generateLabels(csv_file, template, output_path, filenameColumn, productIdCol
             generateLabel(d2, output_path, filenameColumn, template)
 
 def generateLabel(d2, output_path, filenameColumn, template):
-    with open(os.path.join(output_path, d2[filenameColumn]), "w") as outfile:
+    destfile = os.path.join(output_path, d2[filenameColumn])
+    destdir = os.path.dirname(destfile)
+    os.makedirs(destdir, exist_ok=True)
+    with open(destfile, "w") as outfile:
         outfile.write(template.render(d2))
 
 def postProcess(d, filenameColumn, productIdColumn, dataFileColumn):
