@@ -5,7 +5,7 @@ Are there any trailing characters in the namespace in the label? No.
 
 Is the "-S" option in validate pointing at all of the schematrons? Yes.
 Is the "-x" option in validate pointing at all of the schemas? Yes.
-Are the "-x" and "-S" options swapped? Yes.
+Are the "-x" and "-S" options swapped? No.
 Are the "-x" and "-S" options pointing at the correct versions of the schemas/schematrons? Yes.
 
 Are all of the .sch files really schematron files? Yes.
