@@ -1,0 +1,7 @@
+Is the byte offset + object size of each object less than the byte offset of the following object? Yes.
+Is the byte offset + object size of the final object less than the file size? Yes.
+
+
+For PDS3 migrations:
+Does the record size in the PDS4 label match the PDS3 label? Yes.
+Does the record count in the PDS4 label match the PDS3 label? Yes.
