@@ -62,27 +62,14 @@ def process_table(hdu, filename, index):
                 print (f"{filename}.{index}: {len(nans)} not-a-numbers detected")
 
 def handle_data(data):
-    posinfs_total = 0
-    neginfs_total = 0
-    nans_total = 0
-    for row in data:
-        posinfs, neginfs, nans = handle_row(row)
-        posinfs_total += posinfs
-        neginfs_total += neginfs
-        nans_total += nans
-    return posinfs_total, neginfs_total, nans_total
+    stats = [handle_row(row) for row in data]
+    zstats = list(zip(*stats))
+    return [sum(x) for x in zstats]
 
 def handle_row(row):
-    posinfs_total = 0
-    neginfs_total = 0
-    nans_total = 0
-    for cell in row:
-        posinfs, neginfs, nans = handle_cell(cell)
-        posinfs_total += posinfs
-        neginfs_total += neginfs
-        nans_total += nans
-    return posinfs_total, neginfs_total, nans_total
-
+    stats = [handle_cell(cell) for cell in row]
+    zstats = list(zip(*stats))
+    return [sum(x) for x in zstats]
 
 def handle_cell(cell):
     posinfs = numpy.argwhere(numpy.isposinf(cell))
