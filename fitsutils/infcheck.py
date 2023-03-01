@@ -41,14 +41,14 @@ def show_result(filename, index, posinfs, neginfs, nans):
     if posinfs == 0 and neginfs == 0 and nans == 0:
         print (f"{context}: OK")
     else:
-        if posinfs > 0:
-            print (f"{context}: {len(posinfs)} positive infinities detected")
-        if neginfs > 0:
-            print (f"{context}: {len(neginfs)} negative infinities detected")
-        if len(nans) > 0:
-            print (f"{context}: {len(nans)} not-a-numbers detected")
+        show_count(context, posinfs, "positive infinities")
+        show_count(context, neginfs, "negative infinities")
+        show_count(context, nans, "not-a-numbers")
 
-    
+def show_count(context, value, desc):
+    if value > 0:
+        print (f"{context}: {value} {desc} detected")
+
 def process_table(hdu, filename, index):
     data = hdu.data
     if data is None:
