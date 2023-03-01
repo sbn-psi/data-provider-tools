@@ -58,14 +58,12 @@ def process_table(hdu, filename, index):
         show_result(filename, index, posinfs, neginfs, nans)
 
 def handle_data(data):
-    stats = [handle_row(row) for row in data]
-    zstats = list(zip(*stats))
-    return [sum(x) for x in zstats]
+    stats = list(zip(*[handle_row(row) for row in data]))
+    return [sum(x) for x in stats]
 
 def handle_row(row):
-    stats = [handle_cell(cell) for cell in row]
-    zstats = list(zip(*stats))
-    return [sum(x) for x in zstats]
+    stats = list(zip(*[handle_cell(cell) for cell in row]))
+    return [sum(x) for x in stats]
 
 def handle_cell(cell):
     posinfs = numpy.argwhere(numpy.isposinf(cell))
