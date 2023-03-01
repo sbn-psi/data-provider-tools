@@ -32,12 +32,7 @@ Unfortunately, I can't tell you which one you have to run on your specific syste
 
 ```bash
 user@pc fitsutils % ./infcheck.py ~/Desktop/*.fit
-/Users/user/Desktop/grs99177.fit: not an image
----------- /Users/jessestone/Desktop/occvis1048.fit ----------
-    min/max 487 65535
-    min/max without nans 487 65535
-    +infs 0 []
-    -infs 0 []
-    nans 0 []
-/Users/jessestone/Desktop/xrs99034.fit: not an image
+/Users/jessestone/Desktop/grs99177.fit::1: OK
+/Users/jessestone/Desktop/occvis1048.fit::0: OK
+/Users/jessestone/Desktop/xrs99034.fit::1: OK
 ```
