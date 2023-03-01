@@ -29,7 +29,7 @@ def process_hdu(hdu, filename, index):
 def process_image(hdu, filename, index):
     data = hdu.data
     if data is None:
-        print (f"{filename}.{index}: Not an image")
+        pass #print (f"{filename}.{index}: Not an image")
     else:
         posinfs = len(numpy.argwhere(numpy.isposinf(data)))
         neginfs = len(numpy.argwhere(numpy.isneginf(data)))
