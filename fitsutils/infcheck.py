@@ -37,15 +37,16 @@ def process_image(hdu, filename, index):
         show_result(filename, index, posinfs, neginfs, nans)
 
 def show_result(filename, index, posinfs, neginfs, nans):
+    context = f"{filename}::{index}"
     if posinfs == 0 and neginfs == 0 and nans == 0:
-        print (f"{filename}.{index}: OK")
+        print (f"{context}: OK")
     else:
         if posinfs > 0:
-            print (f"{filename}.{index}: {len(posinfs)} positive infinities detected")
+            print (f"{context}: {len(posinfs)} positive infinities detected")
         if neginfs > 0:
-            print (f"{filename}.{index}: {len(neginfs)} negative infinities detected")
+            print (f"{context}: {len(neginfs)} negative infinities detected")
         if len(nans) > 0:
-            print (f"{filename}.{index}: {len(nans)} not-a-numbers detected")
+            print (f"{context}: {len(nans)} not-a-numbers detected")
 
     
 def process_table(hdu, filename, index):
