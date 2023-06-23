@@ -1,0 +1,3 @@
+Has the referenced context object been ingested into EN? Yes.
+Has the validator been updated with the latest context objects by running `validate -u`? Yes.
+Did the validator update succeed? Yes.
