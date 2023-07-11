@@ -6,6 +6,7 @@ import argparse
 import jinja2
 import os
 import os.path
+from xml.sax.saxutils import escape
 
 def main():
     args = getArgs()
@@ -49,6 +50,10 @@ def postProcess(d, filenameColumn, productIdColumn, dataFileColumn):
         d[filenameColumn] = root + ".xml"
     if productIdColumn not in d:
         d[productIdColumn] = str.replace(d[dataFileColumn], ".", "_")
+
+    for k in d:
+        d[k] = escape(d[k])
+
     return d
 
 if __name__ == '__main__':
