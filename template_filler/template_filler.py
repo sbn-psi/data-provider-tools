@@ -51,9 +51,10 @@ def postProcess(d, filenameColumn, productIdColumn, dataFileColumn):
     if productIdColumn not in d:
         d[productIdColumn] = str.replace(d[dataFileColumn], ".", "_")
 
+    d[dataFileColumn] = os.path.basename(d[dataFileColumn])
+
     for k in d:
         d[k] = escape(d[k])
-
     return d
 
 if __name__ == '__main__':
