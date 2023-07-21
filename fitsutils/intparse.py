@@ -54,11 +54,11 @@ def main():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--field_length", type=int,
-                        help="The size of the field to check, in bytes")
-    parser.add_argument("--field_location", type=int, help="The 1-based location of the field within the record")
-    parser.add_argument("--offset", type=int, help="The 0-based start byte of the data table")
-    parser.add_argument("--record_length", type=int, help="The length of each data record, in bytes")
-    parser.add_argument("--records", type=int, help="The number of records to read")
+                        help="The size of the field to check, in bytes", required=True)
+    parser.add_argument("--field_location", type=int, help="The 1-based location of the field within the record", required=True)
+    parser.add_argument("--offset", type=int, help="The 0-based start byte of the data table", required=True)
+    parser.add_argument("--record_length", type=int, help="The length of each data record, in bytes", required=True)
+    parser.add_argument("--records", type=int, help="The number of records to read", required=True)
 
     parser.add_argument("fits_file")
 
