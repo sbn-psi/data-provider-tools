@@ -40,9 +40,24 @@ user@pc fitsutils % ./infcheck.py ~/Desktop/*.fit
 ## Intparse Usage
 
 ```bash
-./intparse.py [-h] [--field_length FIELD_LENGTH] [--field_location FIELD_LOCATION] [--offset OFFSET] [--record_length RECORD_LENGTH] [--records RECORDS] fits_file
+usage: intparse.py [-h] --field_length FIELD_LENGTH --field_location FIELD_LOCATION --offset OFFSET --record_length RECORD_LENGTH --records RECORDS fits_file
 ```
 
+```
+positional arguments:
+  fits_file
+
+options:
+  -h, --help            show this help message and exit
+  --field_length FIELD_LENGTH
+                        The size of the field to check, in bytes
+  --field_location FIELD_LOCATION
+                        The 1-based location of the field within the record
+  --offset OFFSET       The 0-based start byte of the data table
+  --record_length RECORD_LENGTH
+                        The length of each data record, in bytes
+  --records RECORDS     The number of records to read
+```
 ### Example
 
 
