@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
+"""
+A tool to help determine how a value is stored. It reads in an entire column, and parses the value in multiple ways,
+so a user can determine which is correct.
+
+It tries every combination of
+
+MSB/LSB
+Signed/Unsigned
+Converted/Unconverted (to or from signed)
+"""
 import argparse
 import sys
 import struct
-from typing import Iterator, Tuple
 
 ENDIANNESS = ('<', '>')
 SIZES = {
@@ -14,6 +23,15 @@ SIZES = {
 
 
 def parse(bits: int, value: bytes, endianness: str):
+    """
+    Parses a byte string in both signed and unsigned styles, and tries to convert them to the other style
+    by applying an offset
+    :param bits: The size of the byte pattern in bits
+    :param value: The actual stored byte pattern
+    :param endianness: MSB or LSB
+    :return: A map containing both the unsigned and signed parse results, and the result of an attempt tp convert
+    them to the other style
+    """
     offset = 2**(bits - 1)
 
     signed_f, unsigned_f = SIZES[bits]
@@ -33,6 +51,12 @@ def parse(bits: int, value: bytes, endianness: str):
 
 
 def multiparse(bits: int, value: bytes):
+    """
+    Run the parser in both MSB and LSB style
+    :param bits: The number of bits in the value
+    :param value: The stored value to be processed
+    :return: A map containing parse results for both MSB and LSB
+    """
     return {
         'msb': parse(bits, value, '>'),
         'lsb': parse(bits, value, '<')
@@ -40,6 +64,19 @@ def multiparse(bits: int, value: bytes):
 
 
 def parse_file(fits_file, data_offset, records, record_length, field_position, field_size):
+    """
+    Reads in a column from a data table and tries to parse every value in a variety of ways, so a user can
+    determine which is correct.
+
+    Note: This uses *both* 0 and 1-based values. This is to make it easier to use values from a PDS4 label
+    :param fits_file: The file to read in
+    :param data_offset: The 0-based start byte of the data area
+    :param records: The number of records to read in and parse
+    :param record_length: The size of a record, in bytes
+    :param field_position: The 1-based start byte of a field within a record
+    :param field_size: The sie of the field, in bytes
+    :return:
+    """
     bits = field_size * 8
 
     with open(fits_file, 'rb') as f:
@@ -55,7 +92,8 @@ def main():
 
     parser.add_argument("--field_length", type=int,
                         help="The size of the field to check, in bytes", required=True)
-    parser.add_argument("--field_location", type=int, help="The 1-based location of the field within the record", required=True)
+    parser.add_argument("--field_location", type=int,
+                        help="The 1-based location of the field within the record", required=True)
     parser.add_argument("--offset", type=int, help="The 0-based start byte of the data table", required=True)
     parser.add_argument("--record_length", type=int, help="The length of each data record, in bytes", required=True)
     parser.add_argument("--records", type=int, help="The number of records to read", required=True)
