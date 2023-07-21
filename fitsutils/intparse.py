@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import argparse
 import sys
 import struct
 from typing import Iterator, Tuple
@@ -40,12 +41,35 @@ def build_parser(bits: int):
     return multiparse
 
 
-def main():
-    bits = 16
-    value = b'\x7F\xFB'
+def parse_file(fits_file, data_offset, records, record_length, field_position, field_size):
+    bits = field_size * 8
     parser = build_parser(bits)
 
-    print(parser(value))
+    with open(fits_file, 'rb') as f:
+        f.read(data_offset)
+        for _ in range(0, records):
+            record = f.read(record_length)
+            value = record[field_position-1:field_position+field_size-1]
+            print(parser(value))
+
+
+def main():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("--field_length", type=int,
+                        help="The size of the field to check, in bytes")
+    parser.add_argument("--field_location", type=int, help="The 1-based location of the field within the record")
+    parser.add_argument("--offset", type=int, help="The 0-based start byte of the data table")
+    parser.add_argument("--record_length", type=int, help="The length of each data record, in bytes")
+    parser.add_argument("--records", type=int, help="The number of records to read")
+
+    parser.add_argument("fits_file")
+
+    args = parser.parse_args()
+
+    parse_file(args.fits_file, args.offset, args.records, args.record_length, args.field_location, args.field_length)
+
+    return 0
 
 
 if __name__ == '__main__':
