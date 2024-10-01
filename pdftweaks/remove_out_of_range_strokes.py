@@ -29,7 +29,7 @@ def filter(line:bytes):
     linestr = line.decode('UTF-8', errors='ignore')
     if re.match('-?\d+.\d+ -?\d+.\d+ l', linestr):
         floats = [float(x) for x in linestr.split()[:-1]]
-        if any(x < -32768 or x > 32767 for x in floats):
+        if any(x < -32767 or x > 32767 for x in floats):
             return (' ' * (len(line) - 1) + '\n').encode('UTF-8')
     return line
 
