@@ -19,8 +19,13 @@ BATCH_SIZE=${6-1000}
 
 [ -n "$DIRNAME" ] || (echo "Directory name not provided" && usage)
 [ -d "$DIRNAME" ] || (echo "Directory name not a directory" && usage)
+
 [ -n "$CONFIG_FILE" ] || (echo "Config file not provided" && usage)
+[ -e "$CONFIG_FILE" ] || (echo "Config file does not exist" && usage)
+
 [ -n "$CATALOG_FILE" ] || (echo "Catalog file not provided" && usage)
+[ -e "$CATALOG_FILE" ] || (echo "Catalog file does not exist" && usage)
+
 [ -n "$REPORT_DIR" ] || (echo "Report directory not provided" && usage)
 
 mkdir -p "$REPORT_DIR/complete"
