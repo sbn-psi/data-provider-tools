@@ -1,20 +1,17 @@
 #!/usr/bin/env bash
 
+set -e
+
 usage()
 {
     echo "usage: validate_worker.sh config_file catalog_file report_dir file_to_validate..."
     exit 1
 }
 
-CONFIG_FILE="$1"; shift
-CATALOG_FILE="$1"; shift
-REPORT_DIR="$1"; shift
+CONFIG_FILE="$1"; shift || (echo "Config file not provided"; usage)
+CATALOG_FILE="$1"; shift || (echo "Catalog file not provided"; usage)
+REPORT_DIR="$1"; shift || (echo "Report directory not provided"; usage)
 
-set -e
-
-[ -n "$CONFIG_FILE" ] || (echo "Config file not provided"; usage)
-[ -n "$CATALOG_FILE" ] || (echo "Catalog file not provided"; usage)
-[ -n "$REPORT_DIR" ] || (echo "Report directory not provided"; usage)
 [ -d "$REPORT_DIR" ] || (echo "Report directory does not exist"; usage)
 
 RUNDATE=$(date +'%Y%m%dT%H%M%S')
