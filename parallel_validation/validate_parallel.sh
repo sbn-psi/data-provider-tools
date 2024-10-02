@@ -1,4 +1,9 @@
 #! /usr/bin/env bash
+
+# This will run multiple instances of the validator on a given directory, using xargs
+# This should be faster than a single instance for CPU-bound tasks.
+# Each validation worker will have its own output file, which will need to be reassembled later
+
 set -e
 
 

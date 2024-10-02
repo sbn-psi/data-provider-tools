@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# This will invoke a single instance of the validator. This is intended to be called
+# by validate_parallel.sh
+
 set -e
 
 usage()
