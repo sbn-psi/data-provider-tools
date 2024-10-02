@@ -33,6 +33,10 @@ BATCH_SIZE=${6-1000}
 
 [ -n "$REPORT_DIR" ] || (echo "Report directory not provided" && usage)
 
+# Not really a reliable way to find the validate worker script except to move into the directory first
+# https://mywiki.wooledge.org/BashFAQ/028
+[ -e "./validate_worker.sh" ] || (echo "Cannot find validate worker script. Please cd to the directory that contains this script" && exit 1)
+
 mkdir -p "$REPORT_DIR/complete"
 
 find "$DIRNAME" -name "*.xml" -print0 | xargs -0 -n"${BATCH_SIZE}" -P"${WORKERS}" ./validate_worker.sh "$CONFIG_FILE" "$CATALOG_FILE" "$REPORT_DIR"
