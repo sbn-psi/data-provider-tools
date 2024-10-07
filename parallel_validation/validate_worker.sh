@@ -20,5 +20,5 @@ REPORT_DIR="$1"; shift || (echo "Report directory not provided"; usage)
 RUNDATE=$(date +'%Y%m%dT%H%M%S')
 REPORT_FILE=$(mktemp "$REPORT_DIR/validation.$RUNDATE".XXXXXX.txt)
 
-validate -c "$CONFIG_FILE" -C "$CATALOG_FILE" -t "$@" > "$REPORT_FILE"
+validate -c "$CONFIG_FILE" -C "$CATALOG_FILE" -t "$@" > "$REPORT_FILE" || echo "Validation errors in $REPORT_FILE"
 mv "$REPORT_FILE" "$REPORT_DIR/complete"
