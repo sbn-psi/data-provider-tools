@@ -7,7 +7,7 @@ set -e
 
 TEMPFILE=$(mktemp)
 
-grep -h -A100 'Message Types:' "$@" | grep '\d' > "$TEMPFILE"
+grep -h -A100 'Message Types:' "$@" | grep '^ *\d' > "$TEMPFILE"
 
 for i in $(awk '{print $2}' "$TEMPFILE" | uniq | sort | uniq); do
     total=$(grep "$i" "$TEMPFILE" | awk '{sum+=$1} END{print sum;}')
