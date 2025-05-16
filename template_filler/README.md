@@ -49,7 +49,7 @@ There are a few special values that can be inferred from the data file name ("da
 
 ## Writing a CSV file
 
-Template filler uses standard CSV files to populate it templates. A specification of the CSV format is at (https://www.rfc-editor.org/rfc/rfc4180.html). However, you can generally use a spreadsheet and export it to CSV. It's probably a good idea to write the field names in `camelCase` or `snake_case`, to make the template easier to write.
+Template filler uses standard CSV files to populate it templates. A specification of the CSV format is at (https://www.rfc-editor.org/rfc/rfc4180.html). However, you can generally use a spreadsheet and export it to CSV. It's probably a good idea to write the field names in `camelCase` or `snake_case`, to make the template easier to write. The field names are case sensitive, so incorrect case may cause unexpected issues.
 
 You will want one line per label that you want to generate. The "filename" field will determine the name of the label file. If you don't provide one, template filler will try to guess the label file name based on the data file name.
 
