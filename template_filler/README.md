@@ -21,8 +21,8 @@ The script will take the template file, inject values from the CSV file, and wri
 #### Advanced Parameters
 
 * `--filename-column`: This is the name of the field/placeholder for the label file name. It is "filename" by default.
-* `--product-id-column`: This is the name of the field/placeholder for the label file name. It is "productId" by default.
-* `--data-file-id-column`: This is the name of the field/placeholder for the label file name. It is "dataFile" by default.
+* `--product-id-column`: This is the name of the field/placeholder for the product id. It is "productId" by default.
+* `--data-file-id-column`: This is the name of the field/placeholder for the data file name. It is "dataFile" by default.
 
 ### Prerequisites
 
