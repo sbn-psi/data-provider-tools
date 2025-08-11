@@ -34,6 +34,13 @@ cd /path/to/parallel_validation
 ./validate_parallel.sh validation_directory config_file catalog_file report_directory [workers] [batch_size]
 ```
 
+If you need to ignore superseded files, you can run this variant of the script:
+
+```bash
+cd /path/to/parallel_validation
+./validate_parallel_no_superseded.sh validation_directory config_file catalog_file report_directory [workers] [batch_size]
+```
+
 Options:
 * validation directory - this where all of the files that you want to validate are stored. It doesn't matter if this is a bundle, collection, or even a subset of a collection.
 * config file - this is where you will specify options for the validate command, instead of on the command line. This makes the configurations reusable, and also simplifies the script.
